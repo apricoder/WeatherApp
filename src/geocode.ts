@@ -1,11 +1,10 @@
-import {GeocodeResult, IGeocodeResponse, IGeocodeResponseBody} from './geocode.interfaces';
-import {GEOCODE_API_URL} from './geocode.declarations';
+import {IGeocode, IGeocodeResponse, IGeocodeResponseBody} from './geocode.interfaces';
+import {WeatherAppConfig} from './app.config';
+import PromisifiedRequest from './promisified.request';
 
-const Promise = require('bluebird');
-const request = Promise.promisify(require('request'), {multiArgs: true});
-Promise.promisifyAll(request, {multiArgs: true});
+const request = PromisifiedRequest;
 
-export function getCoordinates(address: string): Promise<GeocodeResult> {
+export function getGeocode(address: string): Promise<IGeocode> {
   const options = getGeocodeRequestOptions(address);
   return request.getAsync(options)
     .spread((response: IGeocodeResponse, body: IGeocodeResponseBody) => {
@@ -19,7 +18,7 @@ export function getCoordinates(address: string): Promise<GeocodeResult> {
 }
 
 const getGeocodeRequestOptions = (address: string) => ({
-  uri: `${GEOCODE_API_URL}?address=${encodeURIComponent(address)}`,
+  uri: `${WeatherAppConfig.geocode.api}?address=${encodeURIComponent(address)}`,
   json: true
 });
 
