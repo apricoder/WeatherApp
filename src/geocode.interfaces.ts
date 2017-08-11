@@ -9,11 +9,13 @@ export interface IGeocodeResponseBody {
 export interface GeocodeResult {
   formatted_address: string,
   geometry: {
-    location: {
-      lat: number,
-      lng: number
-    }
+    location: ICoordinates
   }
+}
+
+export interface ICoordinates {
+  lat: number,
+  lng: number
 }
 
 
