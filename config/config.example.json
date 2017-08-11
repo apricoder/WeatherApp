@@ -1,0 +1,9 @@
+{
+  "geocode": {
+    "api": "https://maps.googleapis.com/maps/api/geocode/json"
+  },
+  "forecast": {
+    "api": "https://api.darksky.net/forecast",
+    "key": "your forecast api key"
+  }
+}

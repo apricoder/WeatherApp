@@ -2,6 +2,8 @@ node_modules/
 playground/
 dist/
 
+config/config.json
+
 .idea/
 
 **/*.iml
