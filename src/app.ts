@@ -1,7 +1,10 @@
 import {ApplicationParams} from './app.params';
-import {getCoordinates} from './geocode';
-import {GeocodeResult} from './geocode.interfaces';
+import {getGeocode} from './geocode';
+import {getForecast} from './forecast';
+import {formatForecast} from './forecast.formatter';
 
-getCoordinates(ApplicationParams.address)
-  .then((result: GeocodeResult) => console.log(result))
-  .catch(console.error);
+getGeocode(ApplicationParams.address)
+  .then(geocode => getForecast(geocode.geometry.location)
+    .then(forecast => formatForecast(geocode, forecast))
+    .then(result => console.log(result)))
+  .catch((error) => console.error(error.message));

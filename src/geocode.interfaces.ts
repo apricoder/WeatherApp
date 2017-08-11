@@ -1,21 +1,21 @@
 export interface IGeocodeResponse {
-  body: IGeocodeResponseBody
+  body: IGeocodeResponseBody;
 }
 
 export interface IGeocodeResponseBody {
-  results: Array<GeocodeResult>
+  results: IGeocode[];
 }
 
-export interface GeocodeResult {
-  formatted_address: string,
+export interface IGeocode {
+  formatted_address: string;
   geometry: {
-    location: ICoordinates
+    location: ICoordinates;
   }
 }
 
 export interface ICoordinates {
-  lat: number,
-  lng: number
+  lat: number;
+  lng: number;
 }
 
 
